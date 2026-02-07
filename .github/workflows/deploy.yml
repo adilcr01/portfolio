@@ -32,6 +32,12 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          VITE_RESUME_URL: ${{ secrets.VITE_RESUME_URL }}
+          VITE_RAG_ENGINE_URL: ${{ secrets.VITE_RAG_ENGINE_URL }}
+          VITE_THYROID_PREDICTION_URL: ${{ secrets.VITE_THYROID_PREDICTION_URL }}
+          VITE_FLIGHT_PREDICTION_URL: ${{ secrets.VITE_FLIGHT_PREDICTION_URL }}
+          VITE_GITHUB_PROFILE_URL: ${{ secrets.VITE_GITHUB_PROFILE_URL }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

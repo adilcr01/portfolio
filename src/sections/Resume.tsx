@@ -1,5 +1,5 @@
 import { useInView } from '@/hooks/useInView';
-import { Briefcase, Calendar, MapPin, ExternalLink, GraduationCap } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, GraduationCap } from 'lucide-react';
 
 const experiences = [
   {

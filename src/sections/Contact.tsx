@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useInView } from '@/hooks/useInView';
-import { MapPin, Mail, Phone, Send, Github, Linkedin, Twitter, CheckCircle } from 'lucide-react';
+import { MapPin, Mail, Phone, Send, Github, Linkedin, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';

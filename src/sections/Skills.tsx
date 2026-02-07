@@ -1,10 +1,8 @@
 import { useInView } from '@/hooks/useInView';
 import {
   Code2,
-  Layers,
   Database,
   Cloud,
-  Cpu,
   Terminal
 } from 'lucide-react';
 
