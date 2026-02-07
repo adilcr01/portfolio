@@ -12,8 +12,8 @@ const projects = [
     image: 'project-1.jpg',
     category: 'AI / ML',
     tech: ['Flask', 'Scikit-Learn', 'Azure'],
-    liveUrl: import.meta.env.VITE_THYROID_PREDICTION_URL || '#',
-    githubUrl: 'https://github.com/adilcr01/Thyroid-Disease-Prediction',
+    liveUrl: import.meta.env.VITE_THYROID_PREDICTION_URL || 'https://github.com/adilcr01',
+    // githubUrl: 'https://github.com/adilcr01/Thyroid-Disease-Prediction',
   },
   {
     title: 'Scalable E-Commerce Core',
@@ -21,8 +21,8 @@ const projects = [
     image: 'project-2.jpg',
     category: 'Backend',
     tech: ['Django', 'Celery', 'Redis'],
-    liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || '#',
-    githubUrl: 'https://github.com/adilcr01',
+    liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || 'https://github.com/adilcr01',
+    // githubUrl: 'https://github.com/adilcr01',
   },
   {
     title: 'Flight Price Prediction',
@@ -30,8 +30,8 @@ const projects = [
     image: 'project-3.jpg',
     category: 'AI / ML',
     tech: ['Python', 'Pandas', 'Matplotlib'],
-    liveUrl: import.meta.env.VITE_FLIGHT_PREDICTION_URL || '#',
-    githubUrl: 'https://github.com/adilcr01/Flight-Price-Prediction',
+    liveUrl: import.meta.env.VITE_FLIGHT_PREDICTION_URL || 'https://github.com/adilcr01',
+    // githubUrl: 'https://github.com/adilcr01/Flight-Price-Prediction',
   },
   {
     title: 'Google Maps Scraper',
@@ -39,8 +39,8 @@ const projects = [
     image: 'project-4.jpg',
     category: 'Tools & Scrapers',
     tech: ['Python', 'API', 'PostgreSQL'],
-    liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || '#',
-    githubUrl: 'https://github.com/adilcr01',
+    liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || 'https://github.com/adilcr01',
+    // githubUrl: 'https://github.com/adilcr01',
   },
   {
     title: 'Live Chat Application',
@@ -48,8 +48,8 @@ const projects = [
     image: 'project-5.jpg',
     category: 'Backend',
     tech: ['WebSockets', 'Django Channels'],
-    liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || '#',
-    githubUrl: 'https://github.com/adilcr01',
+    liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || 'https://github.com/adilcr01',
+    // githubUrl: 'https://github.com/adilcr01',
   },
   {
     title: 'Agentic RAG Engine',
@@ -57,8 +57,8 @@ const projects = [
     image: 'project-6.jpg',
     category: 'AI / ML',
     tech: ['Hugging Face', 'Gemma', 'FAISS', 'RapidOCR'],
-    liveUrl: import.meta.env.VITE_RAG_ENGINE_URL || '#',
-    githubUrl: 'https://github.com/adilcr01/RAG-Engine',
+    liveUrl: import.meta.env.VITE_RAG_ENGINE_URL || 'https://github.com/adilcr01',
+    // githubUrl: 'https://github.com/adilcr01/RAG-Engine',
   },
 ];
 
