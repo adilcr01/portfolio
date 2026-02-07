@@ -61,8 +61,8 @@ export function Navigation({ isDark, toggleTheme }: NavigationProps) {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-            ? 'glass-strong shadow-lg shadow-black/5 dark:shadow-black/20'
-            : 'bg-transparent'
+          ? 'glass-strong shadow-lg shadow-black/5 dark:shadow-black/20'
+          : 'bg-transparent'
           }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,8 +90,8 @@ export function Navigation({ isDark, toggleTheme }: NavigationProps) {
                     scrollToSection(link.href);
                   }}
                   className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 ${activeSection === link.href.slice(1)
-                      ? 'text-primary bg-primary/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                    ? 'text-primary bg-primary/10'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                     }`}
                 >
                   {link.name}
@@ -106,7 +106,7 @@ export function Navigation({ isDark, toggleTheme }: NavigationProps) {
                 variant="default"
                 size="sm"
                 className="hidden md:flex gradient-bg text-white hover:opacity-90 transition-all hover:-translate-y-0.5"
-                onClick={() => window.open('https://drive.google.com/file/d/1FcYZBrr_2n9nvklJLxUUEAUz5K4ynYGb/view?usp=sharing', '_blank')}
+                onClick={() => window.open(import.meta.env.VITE_RESUME_URL || '#', '_blank')}
               >
                 <Download className="h-4 w-4 mr-2" />
                 Download CV
@@ -161,8 +161,8 @@ export function Navigation({ isDark, toggleTheme }: NavigationProps) {
         {/* Menu Panel */}
         <div
           className={`absolute top-20 right-4 left-4 glass-strong rounded-2xl shadow-2xl p-6 transition-all duration-500 ${isMobileMenuOpen
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 -translate-y-4'
+            ? 'opacity-100 translate-y-0'
+            : 'opacity-0 -translate-y-4'
             }`}
         >
           <div className="flex flex-col gap-2">
@@ -175,8 +175,8 @@ export function Navigation({ isDark, toggleTheme }: NavigationProps) {
                   scrollToSection(link.href);
                 }}
                 className={`text-lg font-medium py-3 px-4 rounded-xl transition-all duration-300 ${activeSection === link.href.slice(1)
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-foreground/70 hover:text-foreground hover:bg-muted'
                   }`}
                 style={{
                   animation: isMobileMenuOpen
@@ -190,7 +190,7 @@ export function Navigation({ isDark, toggleTheme }: NavigationProps) {
             ))}
             <Button
               className="mt-4 gradient-bg text-white w-full"
-              onClick={() => window.open('https://drive.google.com/file/d/1FcYZBrr_2n9nvklJLxUUEAUz5K4ynYGb/view?usp=sharing', '_blank')}
+              onClick={() => window.open(import.meta.env.VITE_RESUME_URL || '#', '_blank')}
             >
               <Download className="h-4 w-4 mr-2" />
               Download CV
