@@ -11,7 +11,7 @@ const contactInfo = [
     icon: MapPin,
     label: 'Location',
     value: 'Rampur, Uttar Pradesh, 244901',
-    href: '#',
+    // href: '#',
   },
   {
     icon: Mail,
