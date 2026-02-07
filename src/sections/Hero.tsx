@@ -178,7 +178,7 @@ export function Hero() {
               {/* Image Container */}
               <div className="relative rounded-full overflow-hidden shadow-2xl aspect-square">
                 <img
-                  src="/hero-profile.jpg"
+                  src="hero-profile.jpg"
                   alt="Adil Anwar"
                   className="w-full h-full object-cover"
                 />
