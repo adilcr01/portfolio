@@ -9,7 +9,7 @@ const projects = [
   {
     title: 'Thyroid Risk Prediction',
     description: 'An ML application utilizing classification algorithms to predict thyroid disease risk with high accuracy. Deployed on Azure.',
-    image: '/project-1.jpg',
+    image: 'project-1.jpg',
     category: 'AI / ML',
     tech: ['Flask', 'Scikit-Learn', 'Azure'],
     liveUrl: import.meta.env.VITE_THYROID_PREDICTION_URL || '#',
@@ -18,7 +18,7 @@ const projects = [
   {
     title: 'Scalable E-Commerce Core',
     description: 'Designed a robust backend using Django & Celery to handle async tasks, real-time notifications, and high-load traffic.',
-    image: '/project-2.jpg',
+    image: 'project-2.jpg',
     category: 'Backend',
     tech: ['Django', 'Celery', 'Redis'],
     liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || '#',
@@ -27,7 +27,7 @@ const projects = [
   {
     title: 'Flight Price Prediction',
     description: 'Predictive analytics dashboard that forecasts flight prices based on historical data patterns and seasonal trends.',
-    image: '/project-3.jpg',
+    image: 'project-3.jpg',
     category: 'AI / ML',
     tech: ['Python', 'Pandas', 'Matplotlib'],
     liveUrl: import.meta.env.VITE_FLIGHT_PREDICTION_URL || '#',
@@ -36,7 +36,7 @@ const projects = [
   {
     title: 'Google Maps Scraper',
     description: 'Automated tool utilizing Places API to extract business data, ratings, and reviews, exporting directly to PostgreSQL.',
-    image: '/project-4.jpg',
+    image: 'project-4.jpg',
     category: 'Tools & Scrapers',
     tech: ['Python', 'API', 'PostgreSQL'],
     liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || '#',
@@ -45,7 +45,7 @@ const projects = [
   {
     title: 'Live Chat Application',
     description: 'Real-time messaging platform built with Django Channels and WebSockets for instant communication and notifications.',
-    image: '/project-5.jpg',
+    image: 'project-5.jpg',
     category: 'Backend',
     tech: ['WebSockets', 'Django Channels'],
     liveUrl: import.meta.env.VITE_GITHUB_PROFILE_URL || '#',
@@ -54,7 +54,7 @@ const projects = [
   {
     title: 'Agentic RAG Engine',
     description: 'A custom Retrieval-Augmented Generation system using Hugging Face Endpoints, FAISS vector search, and RapidOCR.',
-    image: '/project-6.jpg',
+    image: 'project-6.jpg',
     category: 'AI / ML',
     tech: ['Hugging Face', 'Gemma', 'FAISS', 'RapidOCR'],
     liveUrl: import.meta.env.VITE_RAG_ENGINE_URL || '#',
