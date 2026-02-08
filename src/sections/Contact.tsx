@@ -16,8 +16,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'adilalpha2@gmail.com',
-    href: 'mailto:adilalpha2@gmail.com',
+    value: 'contact@adilanwar.in',
+    href: 'mailto:contact@adilanwar.in',
   },
   {
     icon: Phone,
@@ -58,14 +58,28 @@ export function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("https://adil-contact-form.adilcr01.workers.dev", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setFormData({ name: '', email: '', subject: '', message: '' });
+      const data = await response.json();
 
-    setTimeout(() => setIsSubmitted(false), 5000);
+      if (data.success) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setIsSubmitted(false), 5000);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Failed to send message. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
