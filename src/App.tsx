@@ -8,6 +8,8 @@ import { Contact } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
 import { ChatWidget } from '@/components/ChatWidget';
 
+import { Toaster } from 'sonner';
+
 function App() {
   const { isDark, toggleTheme, mounted } = useTheme();
 
@@ -33,6 +35,7 @@ function App() {
 
       <Footer />
       <ChatWidget />
+      <Toaster position="bottom-right" theme={isDark ? 'dark' : 'light'} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useInView } from '@/hooks/useInView';
 import { MapPin, Mail, Phone, Send, Github, Linkedin, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -54,6 +55,7 @@ export function Contact() {
     }));
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -67,16 +69,22 @@ export function Contact() {
 
       const data = await response.json();
 
+      if (response.status === 429) {
+        toast.error("⏳ Please wait a few minutes before sending another message.");
+        return;
+      }
+
       if (data.success) {
         setIsSubmitted(true);
+        toast.success("Message sent successfully! ✨");
         setFormData({ name: '', email: '', subject: '', message: '' });
         setTimeout(() => setIsSubmitted(false), 5000);
       } else {
-        alert("Something went wrong. Please try again.");
+        toast.error(data.error || "Something went wrong.");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Failed to send message. Please check your connection.");
+      toast.error("Network error. Please check your connection.");
     } finally {
       setIsSubmitting(false);
     }
