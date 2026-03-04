@@ -1,19 +1,30 @@
 import path from "path"
-import 'dotenv/config'
+import fs from "fs"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 import { inspectAttr } from 'kimi-plugin-inspect-react'
 import type { Plugin } from 'vite'
 
+// Read GITHUB_TOKEN from .env for local dev (Vite doesn't auto-populate process.env from .env)
+function readEnvToken(): string {
+  try {
+    const envFile = fs.readFileSync(path.resolve(__dirname, '.env'), 'utf-8');
+    const match = envFile.match(/^GITHUB_TOKEN=(.+)$/m);
+    return match ? match[1].trim() : (process.env.GITHUB_TOKEN ?? '');
+  } catch {
+    return process.env.GITHUB_TOKEN ?? '';
+  }
+}
+
 // ── Dev-only plugin: handles /api/github-contributions inside Vite ──────────
 function githubApiPlugin(): Plugin {
+  const token = readEnvToken();
   return {
     name: 'github-api-dev',
     apply: 'serve',
     configureServer(server) {
       server.middlewares.use('/api/github-contributions', async (req, res) => {
-        const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-        const url = new URL(req.url ?? '', `http://localhost`);
+        const url = new URL(req.url ?? '', 'http://localhost');
         const year = url.searchParams.get('year') ?? new Date().getFullYear().toString();
 
         const QUERY = `
@@ -35,7 +46,7 @@ function githubApiPlugin(): Plugin {
           const ghRes = await fetch('https://api.github.com/graphql', {
             method: 'POST',
             headers: {
-              Authorization: `Bearer ${GITHUB_TOKEN}`,
+              Authorization: `Bearer ${token}`,
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
@@ -54,25 +65,30 @@ function githubApiPlugin(): Plugin {
 
           if (!calendar) {
             res.writeHead(500, { 'Content-Type': 'application/json' });
-            return res.end(JSON.stringify({ error: 'Unexpected GitHub API response' }));
+            res.end(JSON.stringify({ error: 'Unexpected GitHub API response' }));
+            return;
           }
 
           const allDays = calendar.weeks.flatMap(
             (w: { contributionDays: { contributionCount: number; date: string }[] }) =>
               w.contributionDays
           );
-          const maxCount = Math.max(...allDays.map((d: { contributionCount: number }) => d.contributionCount), 1);
+          const maxCount = Math.max(
+            ...allDays.map((d: { contributionCount: number }) => d.contributionCount),
+            1
+          );
           const contributions = allDays.map((d: { contributionCount: number; date: string }) => ({
             date: d.date,
             count: d.contributionCount,
-            intensity: d.contributionCount === 0
-              ? '0'
-              : String(Math.min(4, Math.ceil((d.contributionCount / maxCount) * 4))),
+            intensity:
+              d.contributionCount === 0
+                ? '0'
+                : String(Math.min(4, Math.ceil((d.contributionCount / maxCount) * 4))),
           }));
 
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ year, total: calendar.totalContributions, contributions }));
-        } catch (err) {
+        } catch {
           res.writeHead(500, { 'Content-Type': 'application/json' });
           res.end(JSON.stringify({ error: 'Failed to fetch from GitHub' }));
         }
@@ -92,4 +108,3 @@ export default defineConfig({
     },
   },
 });
-
