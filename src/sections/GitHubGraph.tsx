@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { GitCommitHorizontal } from 'lucide-react';
 
 const GITHUB_USERNAME = 'adilcr01';
-const API_BASE = `/api/github-contributions/${GITHUB_USERNAME}`;
+const API_BASE = `https://corsproxy.io/?url=https://github-contributions.vercel.app/api/v1/${GITHUB_USERNAME}`;
 
 type Year = '2026' | '2025' | '2024';
 const years: Year[] = ['2026', '2025', '2024'];
