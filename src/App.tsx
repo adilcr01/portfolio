@@ -6,6 +6,7 @@ import { Resume } from '@/sections/Resume';
 import { Portfolio } from '@/sections/Portfolio';
 import { Contact } from '@/sections/Contact';
 import { Footer } from '@/sections/Footer';
+import { GitHubGraph } from '@/sections/GitHubGraph';
 import { ChatWidget } from '@/components/ChatWidget';
 
 import { Toaster } from 'sonner';
@@ -30,6 +31,7 @@ function App() {
         <Skills />
         <Resume />
         <Portfolio />
+        <GitHubGraph />
         <Contact />
       </main>
 
