@@ -4,7 +4,8 @@ import { useTheme } from '@/hooks/useTheme';
 import { GitCommitHorizontal } from 'lucide-react';
 
 const GITHUB_USERNAME = 'adilcr01';
-const API_BASE = '/api/github-contributions';
+// const API_BASE = '/api/github-contributions';
+const API_BASE = 'https://script.google.com/macros/s/AKfycbx8LP3UCWOImCheGDUEQHlnvOruUNJpoo9_DByF91VeWf4PdJoc11IofigyHu0d3EC1Qg/exec';
 
 type Year = '2026' | '2025' | '2024';
 const years: Year[] = ['2026', '2025', '2024'];
