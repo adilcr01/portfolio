@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks/useTheme';
 import { GitCommitHorizontal } from 'lucide-react';
 
 const GITHUB_USERNAME = 'adilcr01';
-const API_BASE = `https://corsproxy.io/?url=https://github-contributions.vercel.app/api/v1/${GITHUB_USERNAME}`;
+const API_BASE = '/api/github-contributions';
 
 type Year = '2026' | '2025' | '2024';
 const years: Year[] = ['2026', '2025', '2024'];
@@ -15,10 +15,14 @@ interface Contribution {
     intensity: string; // "0" | "1" | "2" | "3" | "4"
 }
 
-interface ApiResponse {
-    years: { year: string; total: number }[];
+interface YearData {
+    year: string;
+    total: number;
     contributions: Contribution[];
 }
+
+// In-memory cache so switching years doesn't refetch
+const cache: Record<string, YearData> = {};
 
 // 5 intensity levels for the site's primary color (indigo)
 // Light mode: white → lightest → dark primary
@@ -95,36 +99,42 @@ export function GitHubGraph() {
     const { ref: sectionRef, isInView } = useInView<HTMLElement>({ threshold: 0.1 });
     const { isDark } = useTheme();
 
-    const [activeYear, setActiveYear] = useState<Year>('2025'); // 2025 has the most data
-    const [data, setData] = useState<ApiResponse | null>(null);
+    const [activeYear, setActiveYear] = useState<Year>('2025');
+    const [yearData, setYearData] = useState<YearData | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Fetch once
+    // Fetch per year (with cache)
     useEffect(() => {
+        if (cache[activeYear]) {
+            setYearData(cache[activeYear]);
+            return;
+        }
         setLoading(true);
-        fetch(API_BASE)
+        setError(null);
+        fetch(`${API_BASE}?year=${activeYear}`)
             .then(r => r.json())
-            .then((json: ApiResponse) => {
-                setData(json);
+            .then((json: YearData) => {
+                cache[activeYear] = json;
+                setYearData(json);
                 setLoading(false);
             })
             .catch(() => {
                 setError('Failed to load contribution data.');
                 setLoading(false);
             });
-    }, []);
+    }, [activeYear]);
 
     // Build grid for active year
     const { columns, monthLabels } = useMemo(() => {
-        if (!data) return { columns: [], monthLabels: [] };
-        return buildGrid(data.contributions, activeYear);
-    }, [data, activeYear]);
+        if (!yearData) return { columns: [], monthLabels: [] };
+        return buildGrid(yearData.contributions, activeYear);
+    }, [yearData, activeYear]);
 
     const levels = isDark ? DARK_LEVELS : LIGHT_LEVELS;
 
     // Total for selected year
-    const yearTotal = data?.years.find(y => y.year === activeYear)?.total ?? 0;
+    const yearTotal = yearData?.total ?? 0;
 
     // SVG dimensions
     const svgWidth = columns.length * STEP + 4;
