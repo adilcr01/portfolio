@@ -12,6 +12,7 @@ const navLinks = [
   { name: 'Skills', href: '#skills' },
   { name: 'Resume', href: '#resume' },
   { name: 'Portfolio', href: '#portfolio' },
+  { name: 'GitHub', href: '#github-activity' },
   { name: 'Contact', href: '#contact' },
 ];
 
