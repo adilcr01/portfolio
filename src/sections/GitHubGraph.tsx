@@ -57,11 +57,8 @@ function buildGrid(contributions: Contribution[], year: string) {
     const startDay = new Date(jan1);
     startDay.setDate(jan1.getDate() - jan1.getDay()); // go back to Sunday
 
-    // Last day: Dec 31 of the year (or today if current year)
-    const dec31 = new Date(`${year}-12-31`);
-    const endDay = parseInt(year) === new Date().getFullYear()
-        ? new Date()
-        : dec31;
+    // Last day: Dec 31 of the year
+    const endDay = new Date(`${year}-12-31`);
 
     // Build columns (each column = one week, Sunday→Saturday)
     const columns: Contribution[][] = [];
